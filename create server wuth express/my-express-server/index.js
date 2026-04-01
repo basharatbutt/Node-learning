@@ -21,6 +21,10 @@ app.get('/user/:userid/book/:bookid', (req, res) => {
     res.send(req.params);
 });
 
+app.get('/search', (req, res) => {
+    res.send(req.query);
+});
+
 // 6. Start the server and "Listen" for requests
 app.listen(PORT, () => {
     console.log(`✅ Server is running at http://localhost:${PORT}`);
