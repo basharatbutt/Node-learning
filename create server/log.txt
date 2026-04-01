@@ -38,3 +38,6 @@
 1775030771768: /favicon.ico New Req Received
 1775030885787: /about-us New Req Received
 1775030885921: /favicon.ico New Req Received
+1775047476460: / New Req Received
+1775047476706: /favicon.ico New Req Received
+1775047494208: /signup New Req Received

@@ -1,5 +1,6 @@
 const http = require("http");
-const fs = require("fs")
+const fs = require("fs");
+const url = require("url")
 
 const myServer = http.createServer( (req, res) => {
     const log = `${Date.now()}: ${req.url} New Req Received\n`;
@@ -9,6 +10,11 @@ const myServer = http.createServer( (req, res) => {
             break;
           case'/about': res.end("I am About Page");
             break;
+            case'/signup':
+            if(req.method === "GET") res.end("This is a signup Form");
+            else if (req.method === "POST"){
+              res.end("Success")
+            }
             default:
               res.end("404 Not Found");
         }
