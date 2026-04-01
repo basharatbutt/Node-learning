@@ -17,6 +17,10 @@ app.get('/about', (req, res) => {
     res.send('<h3>This is the About Page</h3>');
 });
 
+app.get('/user/:userid/book/:bookid', (req, res) => {
+    res.send(req.params);
+});
+
 // 6. Start the server and "Listen" for requests
 app.listen(PORT, () => {
     console.log(`✅ Server is running at http://localhost:${PORT}`);
