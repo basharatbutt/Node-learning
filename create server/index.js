@@ -1,26 +1,10 @@
-const http = require("http");
-const fs = require("fs");
-const url = require("url")
+const express = require('express')
+const app = express()
 
-const myServer = http.createServer( (req, res) => {
-    const log = `${Date.now()}: ${req.url} New Req Received\n`;
-      fs.appendFile('log.txt', log, (err, data) => {
-        switch (req.url) {
-          case '/': res.end("Hello HomePage");
-            break;
-          case'/about': res.end("I am About Page");
-            break;
-            case'/signup':
-            if(req.method === "GET") res.end("This is a signup Form");
-            else if (req.method === "POST"){
-              res.end("Success")
-            }
-            default:
-              res.end("404 Not Found");
-        }
-      
-      });
-    
-});
+app.get('/', (req, res) => {
+  res.send("Hello kya hal hai")
+})
 
-myServer.listen(8000, () => console.log("Server started") );
+app.listen(3000, () => {
+  console.log('Successfully Connected on port 3000.')
+})
