@@ -23,7 +23,7 @@ app.put('/', (req, res) =>{
     console.log(searchStudent);
     if(searchStudent){
       res.json({
-        message: "PUT / is working",
+        message: "PUT / is working proper",
          "id": studentid,
         "Name": studentName,
         "Class": studentClass,
