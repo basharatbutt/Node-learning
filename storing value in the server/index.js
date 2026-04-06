@@ -13,6 +13,7 @@ let students = [
 // 2. GET Route: Portal/list-Students
 app.get('/', (req, res) =>{
        res.send("Welcome to student Portal")
+       res.send("GET / is working");
 })
 app.put('/', (req, res) =>{
     
@@ -23,6 +24,10 @@ app.put('/', (req, res) =>{
     let searchStudent = students.find(s => s.id == studentid);
     console.log(searchStudent);
     if(searchStudent){
+    searchStudent.Name = studentName;
+      searchStudent.Class = studentClass;
+      searchStudent.Father = studentFather;
+
       res.json({
         message: "PUT / is working proper",
          "id": studentid,
