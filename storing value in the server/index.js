@@ -1,3 +1,4 @@
+const e = require('express');
 const express = require('express');
 const app = express();
 
@@ -8,9 +9,34 @@ let students = [
     { id: 1, Name: "Ali", Class: "Web Dev", Father: "Ahmed" }
 ];
 
+
 // 2. GET Route: Portal/list-Students
 app.get('/', (req, res) =>{
        res.send("Welcome to student Portal")
+})
+app.put('/', (req, res) =>{
+    let studentid = req.body.id;
+    let studentName = req.body.Name;
+    let studentClass = req.body.Class;
+    let studentFather = req.body.Father;
+    let searchStudent = students.find(s => s.id == studentid);
+    console.log(searchStudent);
+    if(searchStudent){
+      res.json({
+        message: "PUT / is working",
+         "id": studentid,
+        "Name": studentName,
+        "Class": studentClass,
+        "Father": studentFather,
+    });
+    }
+    else{        res.json({
+            message: "PUT / is working",
+            message : "Not Avalible"
+        });
+    }
+
+    
 })
 
 app.get('/Portal/list-Students', (req, res) => {
