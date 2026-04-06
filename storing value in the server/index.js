@@ -15,6 +15,7 @@ app.get('/', (req, res) =>{
        res.send("Welcome to student Portal")
 })
 app.put('/', (req, res) =>{
+    
     let studentid = req.body.id;
     let studentName = req.body.Name;
     let studentClass = req.body.Class;
