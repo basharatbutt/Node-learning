@@ -42,25 +42,25 @@
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <% contacts.forEach(contact => { %>
-                    <tr>
-                        <td class="px-4 fw-bold"><% 1 %></td>
-                        <td><%= contact.firstName %></td>
-                        <td><%= contact.lastName %></td>
-                        <td><%= contact.email %></td>
-                        <td><%= contact.phone %></td>
-                        <td class="text-center">
-                            <a href="/show-contact/<%= contact.id %>" class="btn btn-outline-info btn-action"><i class="bi bi-eye"></i></a>
-                            <a href="/update-contact/<%= contact.id %>" class="btn btn-outline-secondary btn-action">
-    <i class="bi bi-pencil-square"></i>
-                            <a href="/delete-contact/<%= contact.id %>" class="btn btn-outline-danger btn-action" onclick="return confirm('Delete this contact?')"><i class="bi bi-x-lg"></i></a>
-                            
-</a>
-                        </td>
-                    </tr>
-                    <% }) %>
-                </tbody>
+               <tbody>
+    <% contacts.forEach((contact, index) => { %>
+    <tr>
+        <td class="px-4 fw-bold"><%= index + 1 %></td> <!-- Fixed index -->
+        <td><%= contact.first_name %></td> <!-- Fixed name -->
+        <td><%= contact.last_name %></td> <!-- Fixed name -->
+        <td><%= contact.email %></td>
+        <td><%= contact.phone %></td>
+        <td class="text-center">
+            <!-- Use _id for MongoDB -->
+            <a href="/show-contact/<%= contact._id %>" class="btn btn-outline-info btn-action"><i class="bi bi-eye"></i></a>
+            
+            <a href="/update-contact/<%= contact._id %>" class="btn btn-outline-secondary btn-action"><i class="bi bi-pencil-square"></i></a>
+            
+            <a href="/delete-contact/<%= contact._id %>" class="btn btn-outline-danger btn-action" onclick="return confirm('Delete?')"><i class="bi bi-x-lg"></i></a>
+        </td>
+    </tr>
+    <% }) %>
+</tbody>
             </table>
         </div>
     </div>

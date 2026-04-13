@@ -1,24 +1,11 @@
-const e = require('express');
 const mongoose = require('mongoose');
 
 const contactSchema = mongoose.Schema({
-    first_name:{
-        type: String
-    },
-    last_name:{
-        type: String
-    },  
-    email:{
-        type: String
-    },
-    phone:{
-        type: String
-    },
-    address:{
-        type: String
-    }
+    first_name: String,
+    last_name: String,
+    email: String,
+    phone: String,
+    address: String
 });
 
-const contact = mongoose.model('Contact', contactSchema);
-
-module.exports = contact;
+module.exports = mongoose.model('Contact', contactSchema);
