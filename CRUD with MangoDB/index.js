@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const Contact = require('./models/contacts.model');
+
+//database connection
+mongoose.connect('mongodb://127.0.0.1:27017/contact-crud')
+.then(() => console.log('database connected'))
 
 
 //Middleware
@@ -16,7 +21,8 @@ let contacts = [
 ];
 
 //routes
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+    const contacts = await Contact.find()
     res.render('home', { contacts: contacts });
 });
 
