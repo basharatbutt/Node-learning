@@ -23,7 +23,7 @@ let contacts = [
 //routes
 app.get('/', async (req, res) => {
     const contacts = await Contact.find()
-    res.render('home', { contacts: contacts });
+    res.render('home', { contacts });
 });
 
 
