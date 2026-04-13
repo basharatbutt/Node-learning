@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+
 
 //Middleware
 app.set('view engine', 'ejs');
