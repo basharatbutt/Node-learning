@@ -52,8 +52,11 @@
                         <td><%= contact.phone %></td>
                         <td class="text-center">
                             <a href="/show-contact/<%= contact.id %>" class="btn btn-outline-info btn-action"><i class="bi bi-eye"></i></a>
-                            <a href="/update-contact/<%= contact.id %>" class="btn btn-outline-secondary btn-action"><i class="bi bi-pencil-square"></i></a>
+                            <a href="/update-contact/<%= contact.id %>" class="btn btn-outline-secondary btn-action">
+    <i class="bi bi-pencil-square"></i>
                             <a href="/delete-contact/<%= contact.id %>" class="btn btn-outline-danger btn-action" onclick="return confirm('Delete this contact?')"><i class="bi bi-x-lg"></i></a>
+                            
+</a>
                         </td>
                     </tr>
                     <% }) %>

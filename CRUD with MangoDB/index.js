@@ -19,8 +19,6 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/show-contact', (req, res) => {});
-
 app.get('/add-contact', (req, res) => {
      res.render('add-contact');
 });
@@ -38,20 +36,36 @@ app.post('/add-contact', (req, res) => {
     res.redirect('/');
 });
 
-app.get('/update-contact', (req, res) => {});
 
-
-app.post('/update-contact', (req, res) => {});
-
-app.get('/delete-contact', (req, res) => {});
 
 app.get('/show-contact/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const contact = contacts.find(c => c.id === id);
+    
     if (contact) {
-        res.render('show-contact', { contact: contact });
+        // Pass the 'contact' object to the EJS file
+        res.render('update-contact', { contact: contact });
     } else {
-        res.send("Contact not found");
+        res.status(404).send("Contact not found");
+    }
+});
+
+app.post('/update-contact/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const contactIndex = contacts.findIndex(c => c.id === id);
+
+    if (contactIndex !== -1) {
+        // Overwrite the contact at that index with the new values from the form
+        contacts[contactIndex] = {
+            id: id, // Keep the same ID
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            phone: req.body.phone
+        };
+        res.redirect('/'); // Go back to the home page to see the change
+    } else {
+        res.status(404).send("Update failed: Contact not found");
     }
 });
 
