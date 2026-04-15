@@ -4,7 +4,7 @@ const router = express.Router();
 // 2. HOME: Fetch all contacts from MongoDB
 router.get('/', async (req, res) => {
     try {
-        const contacts = await Contact.find();
+        const contacts = await contacts.find();
         res.render('home', { contacts });
     } catch (err) {
         res.status(500).send("Error fetching contacts");
@@ -35,7 +35,7 @@ router.post('/add-contact', async (req, res) => {
 router.get('/show-contact/:id', async (req, res) => {
     try {
         // We use findById and we DO NOT use parseInt
-        const contact = await Contact.findById(req.params.id);
+        const contact = await contact.findById(req.params.id);
         if (contact) {
             res.render('show-contact', { contact: contact });
         } else {
@@ -49,7 +49,7 @@ router.get('/show-contact/:id', async (req, res) => {
 // 6. UPDATE CONTACT: Show form with data
 router.get('/update-contact/:id', async (req, res) => {
     try {
-        const contact = await Contact.findById(req.params.id);
+        const contact = await contact.findById(req.params.id);
         res.render('update-contact', { contact: contact });
     } catch (err) {
         res.redirect('/');
