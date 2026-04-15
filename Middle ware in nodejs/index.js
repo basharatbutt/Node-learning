@@ -3,7 +3,7 @@ const app = express();
 
 app.get('/about', (req, res) => {
     res.send('About Us');
-})
+});
 
 app.use((req, res, next) => {
     const d = new Date();
