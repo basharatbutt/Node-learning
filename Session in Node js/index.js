@@ -10,32 +10,31 @@ app.use(session({
 }));
 
 app.get('/', (req, res) => {
-    res.send('<h1> Home Page </h1>');
+    res.send('<h1> Home Page </h1> <br> <a href="/get-username">Check Status</a>');
 });
 
 app.get('/set-username', (req, res) => {
     req.session.username = "basharat";
-    res.send('<h1> Username "basharat" has been set in session </h1> <a href="/get-username">Check Username</a>');
+    res.send('<h1> Username "basharat" has been set! </h1> <a href="/get-username">Check Username</a>');
 });
 
 app.get('/get-username', (req, res) => {
     if (req.session.username) {
-        res.send(`<h1> Username in session is: ${req.session.username} </h1>`);
+        res.send(`<h1> Username in session is: ${req.session.username} </h1> <a href="/destroy">Logout/Destroy</a>`);
     } else {
-        res.send('<h1> No username found in session! </h1> <a href="/set-username">Set it here</a>');
+        res.send('<h1> No username found! </h1> <a href="/set-username">Set it here</a>');
     }
 });
 
-app.get('/destroy', (req, res) => { // Removed the ) from here
+// FIXED DESTROY ROUTE
+app.get('/destroy', (req, res) => {
     req.session.destroy(err => {
         if (err) {      
             return res.send('<h1>Error destroying session</h1>');       
         }
-        // It is also good practice to clear the cookie from the browser
-        res.clearCookie('connect.sid'); 
         res.send('<h1> Session destroyed! </h1> <a href="/">Go Home</a>');
     });
-}); // Parenthesis moved to here
+});
 
 app.listen(3000, () => {
     console.log('Server running on http://localhost:3000');
