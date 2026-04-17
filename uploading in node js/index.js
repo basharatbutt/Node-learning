@@ -30,16 +30,18 @@ app.get("/", (req, res) => {
 
 // 3. The Upload Route
 // 'myMedia' must match the 'name' attribute in your ejs file
-app.post("/upload", upload.single("myMedia"), (req, res, err) => {
+app.post("/upload", upload.single("myMedia"), (req, res) => {
     res.send(`File uploaded successfully: ${req.file.filename}`);
-}, (error, req, res, next) =>{
-if (error) {
-} else if () {
+});
 
-}
-next()
-
-} );
+// Error handling middleware
+app.use((error, req, res, next) => {
+    if (error) {
+        res.status(400).send(error.message);
+    } else {
+        next();
+    }
+});
 
 const fileFilter = (req, file, cb) => {
     if(file.mimetype.startsWith('image/')){
